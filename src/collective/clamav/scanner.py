@@ -34,7 +34,6 @@ def _make_clamd(type, **kwargs):
 class ClamavScanner(object):
     """
     """
-    #implements(IAVScanner)
 
     def ping(self, type, **kwargs):
         if not _make_clamd(type, **kwargs).ping() == "PONG":

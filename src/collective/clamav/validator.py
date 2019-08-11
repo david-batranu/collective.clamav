@@ -41,9 +41,8 @@ def _scanBuffer(buffer):
 
 @implementer(IValidator)
 class ClamavValidator:
-    """Archetypes validator to confirm a file upload is virus-free."""
-
-    #implements(IValidator)
+    """Dexterity content types validator to confirm a file upload
+       is virus-free."""
 
     def __init__(self, name):
         self.name = name
