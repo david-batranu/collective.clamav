@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import clamd
 
-from zope.interface import implements
+# from zope.interface import implements
+from zope.interface import implementer
 
 from collective.clamav.interfaces import IAVScanner
 
@@ -29,10 +30,11 @@ def _make_clamd(type, **kwargs):
         raise ScanError('Invalid call')
 
 
+@implementer(IAVScanner)
 class ClamavScanner(object):
     """
     """
-    implements(IAVScanner)
+    #implements(IAVScanner)
 
     def ping(self, type, **kwargs):
         if not _make_clamd(type, **kwargs).ping() == "PONG":
