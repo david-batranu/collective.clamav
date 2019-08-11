@@ -35,15 +35,6 @@
 
   <utility factory=".scanner.ClamavScanner" />
 
-
-  <adapter
-      name="collective.clamav.file"
-      factory=".schema.VirusFreeFileModifier" />
-
-  <adapter
-     name="collective.clamav.image"
-     factory=".schema.VirusFreeImageModifier" />
-
   <adapter factory=".validator.Z3CFormclamavValidator" />
 
 </configure>

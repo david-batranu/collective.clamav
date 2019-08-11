@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 import logging
 
-import Globals
+# import Globals
+from App.config import getConfiguration
 from Products.validation.interfaces.IValidator import IValidator
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
-from zope.interface import implements, Invalid
+from zope.interface import implementer, Invalid
 from collective.clamav.interfaces import IAVScanner
 from collective.clamav.scanner import ScanError
 from collective.clamav.interfaces import IAVScannerSettings
@@ -14,8 +15,8 @@ logger = logging.getLogger('collective.clamav')
 
 
 def _scanBuffer(buffer):
-    if Globals.DevelopmentMode:  # pragma: no cover
-        logger.warn('Skipping virus scan in development mode.')
+    if getConfiguration().debug_mode:  # pragma: no cover
+        logger.warning('Skipping virus scan in development mode.')
         return ''
 
     registry = getUtility(IRegistry)
@@ -38,10 +39,10 @@ def _scanBuffer(buffer):
     return result
 
 
+@implementer(IValidator)
 class ClamavValidator:
-    """Archetypes validator to confirm a file upload is virus-free."""
-
-    implements(IValidator)
+    """Dexterity content types validator to confirm a file upload
+       is virus-free."""
 
     def __init__(self, name):
         self.name = name

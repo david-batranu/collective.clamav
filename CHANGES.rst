@@ -1,10 +1,14 @@
 Changelog
 =========
 
-2.0a3 (unreleased)
+3.0a1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Remove the AT schema extension and make it work within Plone 5.2
+  and Python 3. [Andreas Mantke]
+- Increase the release number to 3 because it breaks compatibility
+  to old Archetypes content types. [Andreas Mantke]
+
 
 
 2.0a2 (2016-09-12)
