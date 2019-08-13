@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import clamd
 
-# from zope.interface import implements
 from zope.interface import implementer
 
 from collective.clamav.interfaces import IAVScanner
