@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
 
-# import Globals
 from App.config import getConfiguration
 from Products.validation.interfaces.IValidator import IValidator
 from plone.registry.interfaces import IRegistry
