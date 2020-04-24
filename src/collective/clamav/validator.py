@@ -9,6 +9,7 @@ from zope.interface import implementer, Invalid
 from collective.clamav.interfaces import IAVScanner
 from collective.clamav.scanner import ScanError
 from collective.clamav.interfaces import IAVScannerSettings
+from z3c.form.interfaces import NOT_CHANGED
 
 logger = logging.getLogger('collective.clamav')
 
@@ -94,8 +95,13 @@ else:
         def validate(self, value):
             super(Z3CFormclamavValidator, self).validate(value)
 
+
+
             if getattr(value, '_validate_isVirusFree', False) or value is None:
                 # validation is called multiple times for the same file upload
+                return
+
+            if value is NOT_CHANGED:
                 return
 
             # TODO this reads the entire file into memory, there should be
