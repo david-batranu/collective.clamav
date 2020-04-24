@@ -2,14 +2,13 @@
 import logging
 
 from App.config import getConfiguration
-from Products.validation.interfaces.IValidator import IValidator
-from plone.registry.interfaces import IRegistry
-from zope.component import getUtility
-from zope.interface import implementer, Invalid
-from collective.clamav.interfaces import IAVScanner
+from collective.clamav.interfaces import IAVScanner, IAVScannerSettings
 from collective.clamav.scanner import ScanError
-from collective.clamav.interfaces import IAVScannerSettings
+from plone.registry.interfaces import IRegistry
+from Products.validation.interfaces.IValidator import IValidator
 from z3c.form.interfaces import NOT_CHANGED
+from zope.component import getUtility
+from zope.interface import Invalid, implementer
 
 logger = logging.getLogger('collective.clamav')
 
@@ -65,11 +64,11 @@ class ClamavValidator:
                 result = _scanBuffer(content)
             except ScanError as e:
                 logger.error('ScanError %s on %s.' % (e, value.filename))
-                return "There was an error while checking the file for " \
-                       "viruses: Please contact your system administrator."
+                return 'There was an error while checking the file for ' \
+                       'viruses: Please contact your system administrator.'
 
             if result:
-                return "Validation failed, file is virus-infected. (%s)" % \
+                return 'Validation failed, file is virus-infected. (%s)' % \
                        (result)
             else:
                 # mark the file upload instance as already checked
@@ -95,8 +94,6 @@ else:
         def validate(self, value):
             super(Z3CFormclamavValidator, self).validate(value)
 
-
-
             if getattr(value, '_validate_isVirusFree', False) or value is None:
                 # validation is called multiple times for the same file upload
                 return
@@ -111,13 +108,13 @@ else:
                 result = _scanBuffer(value.data)
             except ScanError as e:
                 logger.error('ScanError %s on %s.' % (e, value.filename))
-                raise Invalid("There was an error while checking "
-                              "the file for viruses: Please "
-                              "contact your system administrator.")
+                raise Invalid('There was an error while checking '
+                              'the file for viruses: Please '
+                              'contact your system administrator.')
 
             if result:
-                raise Invalid("Validation failed, file "
-                              "is virus-infected. (%s)" %
+                raise Invalid('Validation failed, file '
+                              'is virus-infected. (%s)' %
                               (result))
             else:
                 # mark the file instance as already checked
