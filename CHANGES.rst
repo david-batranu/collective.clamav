@@ -8,6 +8,9 @@ Changelog
   and Python 3. [Andreas Mantke]
 - Increase the release number to 3 because it breaks compatibility
   to old Archetypes content types. [Andreas Mantke]
+- Added a test for value NOT_CHANGED to the validator module because
+  of a change in converter.py of plone.formwidget.namedfile [Andreas Mantke]
+- isort and flake8 fixes in validator module [Andreas Mantke]
 
 
 
