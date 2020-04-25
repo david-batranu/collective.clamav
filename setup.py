@@ -45,6 +45,7 @@ setup(
         'setuptools',
         'z3c.jbot',
         'plone.app.registry',
+        'Products.validation',
     ],
     extras_require={
         'test': [
@@ -55,6 +56,7 @@ setup(
             'plone.testing>=7.0.2',
             'plone.app.contenttypes',
             'plone.app.robotframework[debug]',
+            'Products.validation',
         ],
     },
     entry_points="""
