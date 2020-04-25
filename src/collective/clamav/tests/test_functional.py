@@ -36,7 +36,7 @@ class TestIntegration(unittest.TestCase):
             'Authorization', 'Basic %s:%s' % (
                 TEST_USER_NAME,
                 TEST_USER_PASSWORD,
-            )
+            ),
         )
 
     def tearDown(self):

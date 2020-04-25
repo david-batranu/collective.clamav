@@ -22,7 +22,7 @@ def test_suite():
         suite.addTests([
             layered(
                 robottestsuite,
-                layer=COLLECTIVE_CLAMAV_ACCEPTANCE_TESTING
+                layer=COLLECTIVE_CLAMAV_ACCEPTANCE_TESTING,
             ),
         ])
     return suite
