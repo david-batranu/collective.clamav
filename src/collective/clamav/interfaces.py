@@ -45,7 +45,7 @@ class IAVScannerSettings(Interface):
                              description=_(u'If connected to clamd '
                                            u'through the network, the '
                                            u'port on which clamd listens.'),
-                             default=3310
+                             default=3310,
                              required=True)
 
     clamav_timeout = schema.Int(title=_(u'Timeout'),
