@@ -14,6 +14,7 @@ from plone.app.testing import setRoles
 from zope.component import getGlobalSiteManager
 from zope.configuration import xmlconfig
 from zope.interface import implements
+from zope.interface import implementer
 
 from collective.clamav.interfaces import IAVScanner
 import base64
@@ -63,12 +64,10 @@ s = """
 
 EICAR = base64.b64decode(s)
 
-
+@implementer(IAVScanner)
 class MockAVScanner(object):
     """Mock objects to run tests withoud clamav present.
     """
-
-    implements(IAVScanner)
 
     def ping(self, type, **kwargs):
         """
