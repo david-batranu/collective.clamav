@@ -16,6 +16,7 @@ from zope.configuration import xmlconfig
 from zope.interface import implements
 
 from collective.clamav.interfaces import IAVScanner
+import base64
 
 
 class CollectiveClamavLayer(PloneSandboxLayer):
@@ -56,9 +57,11 @@ COLLECTIVE_CLAMAV_ACCEPTANCE_TESTING = FunctionalTesting(
     name='CollectiveClamavLayer:AcceptanceTesting',
 )
 
-EICAR = """
+s = """
     WDVPIVAlQEFQWzRcUFpYNTQoUF4pN0NDKTd9JEVJQ0FSLVNUQU5E
-    QVJELUFOVElWSVJVUy1URVNU\nLUZJTEUhJEgrSCo=\n""".decode('base64')
+    QVJELUFOVElWSVJVUy1URVNU\nLUZJTEUhJEgrSCo=\n"""
+
+EICAR = base64.b64decode(s)
 
 
 class MockAVScanner(object):
