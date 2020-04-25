@@ -52,7 +52,7 @@ class TestIntegration(unittest.TestCase):
         control.filename = 'virus.txt'
         control.value = StringIO(EICAR)
         self.browser.getControl('Save').click()
-        self.failIf('Eicar-Test-Signature' not in self.browser.contents)
+        self.assertFalse('Eicar-Test-Signature' not in self.browser.contents)
 
         # And let's see if a clean file passes...
         self.browser.open(

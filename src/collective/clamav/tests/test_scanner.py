@@ -26,7 +26,7 @@ class TestScanner(unittest.TestCase):
         """ Test ping with a network connection on localhost 3310
         """
 
-        self.assertEquals(self.scanner.ping(type='net'), True)
+        self.assertEqual(self.scanner.ping(type='net'), True)
 
         # Test timeout
         self.assertRaises(
@@ -40,7 +40,7 @@ class TestScanner(unittest.TestCase):
         the socketpath
         """
 
-        self.assertEquals(
+        self.assertEqual(
             self.scanner.ping(type='socket', socketpath='/tmp/clamd.socket'),
             True)
 
@@ -56,12 +56,12 @@ class TestScanner(unittest.TestCase):
         """ Try a virus through the net.
         """
 
-        self.assertEquals(
+        self.assertEqual(
             self.scanner.scanBuffer(EICAR, type='net'),
             'Eicar-Test-Signature')
 
         # And a normal file...
-        self.assertEquals(
+        self.assertEqual(
             self.scanner.scanBuffer('Not a virus', type='net'),
             None)
 
@@ -76,17 +76,17 @@ class TestScanner(unittest.TestCase):
         """ Try a virus through a unix socket.
         """
 
-        self.assertEquals(
+        self.assertEqual(
             self.scanner.scanBuffer(
                 EICAR, type='socket',
                 socketpath='/tmp/clamd.socket'),
             'Eicar-Test-Signature')
 
         # And a normal file...
-        self.assertEquals(
+        self.assertEqual(
             self.scanner.scanBuffer(
                 'Not a virus', type='socket',
-                socketpath='/tmp/clamd.socket'
+                socketpath='/tmp/clamd.socket',
             ), None)
 
         # Test timeout
