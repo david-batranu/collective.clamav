@@ -37,13 +37,13 @@ COLLECTIVE_CLAMAV_FIXTURE = CollectiveClamavLayer()
 
 COLLECTIVE_CLAMAV_INTEGRATION_TESTING = IntegrationTesting(
     bases=(COLLECTIVE_CLAMAV_FIXTURE,),
-    name='CollectiveClamavLayer:IntegrationTesting'
+    name='CollectiveClamavLayer:IntegrationTesting',
 )
 
 
 COLLECTIVE_CLAMAV_FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(COLLECTIVE_CLAMAV_FIXTURE,),
-    name='CollectiveClamavLayer:FunctionalTesting'
+    name='CollectiveClamavLayer:FunctionalTesting',
 )
 
 
@@ -51,9 +51,9 @@ COLLECTIVE_CLAMAV_ACCEPTANCE_TESTING = FunctionalTesting(
     bases=(
         COLLECTIVE_CLAMAV_FIXTURE,
         REMOTE_LIBRARY_BUNDLE_FIXTURE,
-        z2.ZSERVER_FIXTURE
+        z2.ZSERVER_FIXTURE,
     ),
-    name='CollectiveClamavLayer:AcceptanceTesting'
+    name='CollectiveClamavLayer:AcceptanceTesting',
 )
 
 EICAR = """
@@ -111,10 +111,10 @@ class AVMockFixture(PloneSandboxLayer):
 AVMOCK_FIXTURE = AVMockFixture()
 
 AV_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(AV_FIXTURE, ), name="AVFixture:Integration")
+    bases=(AV_FIXTURE, ), name='AVFixture:Integration')
 AV_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(AV_FIXTURE, ), name="AVFixture:Functional")
+    bases=(AV_FIXTURE, ), name='AVFixture:Functional')
 AVMOCK_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(AVMOCK_FIXTURE, ), name="AVMockFixture:Integration")
+    bases=(AVMOCK_FIXTURE, ), name='AVMockFixture:Integration')
 AVMOCK_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(AVMOCK_FIXTURE, ), name="AVMockFixture:Functional")
+    bases=(AVMOCK_FIXTURE, ), name='AVMockFixture:Functional')

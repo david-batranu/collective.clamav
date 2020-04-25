@@ -35,7 +35,7 @@ class ClamavScanner(object):
     """
 
     def ping(self, type, **kwargs):
-        if not _make_clamd(type, **kwargs).ping() == "PONG":
+        if not _make_clamd(type, **kwargs).ping() == 'PONG':
             raise ScanError('Could not ping clamd server')
         return True
 
@@ -49,7 +49,7 @@ class ClamavScanner(object):
         cd = _make_clamd(type, **kwargs_copy)
         status = cd.instream(BytesIO(buffer))
 
-        if status["stream"][0] == "FOUND":
-            return status["stream"][1]
-        if status["stream"][0] == "ERROR":
-            raise ScanError(status["stream"][1])
+        if status['stream'][0] == 'FOUND':
+            return status['stream'][1]
+        if status['stream'][0] == 'ERROR':
+            raise ScanError(status['stream'][1])
