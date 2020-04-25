@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from os.path import dirname, join
-from StringIO import StringIO
+from io import StringIO
 
 from collective.clamav.testing import EICAR
 from collective.clamav.testing import AVMOCK_FUNCTIONAL_TESTING  # noqa
