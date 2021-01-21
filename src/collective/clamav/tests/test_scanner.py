@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-from zope.component import getUtility
-
 from collective.clamav.interfaces import IAVScanner
 from collective.clamav.scanner import ScanError
-from collective.clamav.testing import EICAR
 from collective.clamav.testing import AV_INTEGRATION_TESTING
+from collective.clamav.testing import EICAR
+from zope.component import getUtility
 
 import unittest
 
@@ -56,14 +55,12 @@ class TestScanner(unittest.TestCase):
         """ Try a virus through the net.
         """
 
-        self.assertEqual(
-            self.scanner.scanBuffer(EICAR, type='net'),
-            'Eicar-Test-Signature')
+        self.assertIsNotNone(
+            self.scanner.scanBuffer(EICAR, type='net'))
 
         # And a normal file...
-        self.assertEqual(
-            self.scanner.scanBuffer('Not a virus', type='net'),
-            None)
+        self.assertIsNone(
+            self.scanner.scanBuffer(b'Not a virus', type='net'))
 
         # Test timeout
         self.assertRaises(
@@ -76,18 +73,17 @@ class TestScanner(unittest.TestCase):
         """ Try a virus through a unix socket.
         """
 
-        self.assertEqual(
+        self.assertIsNotNone(
             self.scanner.scanBuffer(
                 EICAR, type='socket',
-                socketpath='/tmp/clamd.socket'),
-            'Eicar-Test-Signature')
+                socketpath='/tmp/clamd.socket'))
 
         # And a normal file...
-        self.assertEqual(
+        self.assertIsNone(
             self.scanner.scanBuffer(
-                'Not a virus', type='socket',
+                b'Not a virus', type='socket',
                 socketpath='/tmp/clamd.socket',
-            ), None)
+            ))
 
         # Test timeout
         self.assertRaises(

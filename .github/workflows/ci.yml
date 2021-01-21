@@ -1,0 +1,38 @@
+name: collective.clamav CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install ClamAV
+        run: |
+          sudo apt-get -y install clamav clamav-daemon clamav-freshclam clamav-unofficial-sigs
+          sudo bash -c 'echo -e "TCPSocket 3310\nLocalSocket /tmp/clamd.socket\n$(cat /etc/clamav/clamd.conf)" > /etc/clamav/clamd.conf'
+          sudo freshclam -l /tmp/freshclam.log
+          sudo systemctl start clamav-daemon.service
+          sudo systemctl status clamav-daemon.service
+          head /etc/clamav/clamd.conf
+      - name: pip install
+        run: pip install -r requirements.txt -c constraints_plone52.txt
+      - name: buildout
+        run: buildout -t 10 -c test_plone52.cfg
+      - name: Run tests
+        run: bin/test --all
+      - name: Coverage
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pip install coverage
+          coverage run --include=src/* bin/test --all
+          coverage json --include=src/*
+          pip install -q coveralls
+          coveralls --service=github
