@@ -20,12 +20,14 @@ src/*
 test.plone_addon/
 var/
 .idea/
+.vscode/
 # files
 lib64
 log.html
 output.xml
 pip-selfcheck.json
 report.html
+pyvenv.cfg
 # excludes
 !.coveragerc
 !.editorconfig
