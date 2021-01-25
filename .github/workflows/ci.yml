@@ -22,9 +22,9 @@ jobs:
           sudo systemctl status clamav-daemon.service
           head /etc/clamav/clamd.conf
       - name: pip install
-        run: pip install -r requirements.txt -c constraints_plone52.txt
+        run: pip install -r requirements.txt
       - name: buildout
-        run: buildout -t 10 -c test_plone52.cfg
+        run: buildout -t 10 -c ci.cfg
       - name: Run tests
         run: bin/test --all
       - name: Coverage
