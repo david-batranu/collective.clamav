@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.0a1 (unreleased)
+3.0.0 (2021-01-25)
 ------------------
 
 - Remove the AT schema extension and make it work within Plone 5.2
